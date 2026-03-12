@@ -1,4 +1,4 @@
-# PixelOS 14 — Xiaomi Redmi Note 11 (spes)
+# PixelOS 14 - Xiaomi Redmi Note 11 (spes)
 
 > This ROM was built with the assistance of AI (Qoder) ✨
 
