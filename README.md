@@ -61,4 +61,4 @@ out/target/product/spes/PixelOS-*.zip
 
 ## หมายเหตุ
 - ดูรายการ Bug ที่แก้ไขไปแล้วได้ที่ [BUGS_FIXED.md](BUGS_FIXED.md)
-- ดูวิธี Setup ภาษาอังกฤษได้ที่ [README_EN.md](README_EN.md)
+- English version: [README_EN.md](README_EN.md)
