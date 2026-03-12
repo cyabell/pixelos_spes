@@ -2,8 +2,6 @@
 
 > This ROM was built with the assistance of AI (Qoder) ✨
 
-Tested: Build passes 100%, sideload confirmed working on device.
-
 ---
 
 ## ROM Info
