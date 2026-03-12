@@ -1,6 +1,5 @@
 # BUGS FIXED — PixelOS 14 spes
 
-> รายการปัญหาทั้งหมดที่แก้ไขเพื่อให้ Build ผ่าน 100%
 > All issues fixed to achieve a successful build and working sideload.
 
 ---
