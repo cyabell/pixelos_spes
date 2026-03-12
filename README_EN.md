@@ -28,7 +28,7 @@ mkdir -p ~/bin && curl https://storage.googleapis.com/git-repo-downloads/repo > 
 
 ### 3. Repo Init
 ```bash
-repo init -u https://github.com/cyabell/manifest -b fourteen --git-lfs
+repo init -u https://github.com/cyabell/pixelos_spes -b fourteen --git-lfs
 ```
 > ⚠️ `--git-lfs` is required — GMS APKs are stored in Git LFS. Without it you will get corrupt APK errors during build.
 
