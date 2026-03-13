@@ -4,6 +4,21 @@
 
 ---
 
+## KernelSU Version
+
+| Item | Value |
+|------|-------|
+| KernelSU variant | KernelSU Next |
+| KSU_VERSION (kernel) | **33024** |
+| Compatible Manager | KernelSU Next Manager **v3.1.0** |
+| Manager download | [KernelSU Next Releases](https://github.com/rifsxd/KernelSU-Next/releases) |
+
+> ⚠️ The Manager version **must match** the kernel KSU_VERSION.
+> Kernel reports `33024` → download Manager **v3.1.0 (33024)** specifically.
+> Using a mismatched version will show "abnormal" in the Manager app.
+
+---
+
 ## Overview
 
 This integration embeds [KernelSU Next](https://github.com/rifsxd/KernelSU-Next) directly into the Linux 4.19 kernel source for Xiaomi Redmi Note 11 (spes/sm6225). KernelSU operates at the kernel level — no `su` binary in PATH, no Magisk artifacts — making root inherently stealthy.
@@ -15,7 +30,7 @@ This integration embeds [KernelSU Next](https://github.com/rifsxd/KernelSU-Next)
 ### 1. KernelSU Next source embedded
 - Copied KernelSU Next source into `drivers/kernelsu/`
 - Added to `drivers/Kconfig` and `drivers/Makefile`
-- Version hardcoded to **33024** (matches Manager v3.1.0)
+- Version hardcoded to **33024** in `drivers/kernelsu/Kbuild`
 
 ### 2. Kernel config (`spes-perf_defconfig`)
 Enabled:
@@ -44,10 +59,8 @@ CONFIG_HAVE_KPROBES=y
 ### 4. RC injection fix
 Android 14 with non-GKI kernel may miss `post-fs-data` trigger. Added `late-init` as fallback in `KERNEL_SU_RC`:
 ```c
-"on late-init
-"
-"    exec u:r:u:r:kernelsu:s0 root -- " KSUD_PATH " post-fs-data
-"
+"on late-init\n"
+"    exec u:r:kernelsu:s0 root -- " KSUD_PATH " post-fs-data\n"
 ```
 
 ### 5. SELinux flex_array fix (root cause of bootloop)
@@ -68,13 +81,3 @@ KernelSU trying to add new types (`su`, `ksu_file`) at runtime would exceed capa
 | SELinux su domain | ✅ `u:r:su:s0` |
 | Zygisk (ZygiskNext) | ✅ Enabled |
 | Root detection | Hidden (no su binary in PATH) |
-
----
-
-## Post-flash Modules (install via KernelSU Manager)
-
-| Module | Purpose |
-|--------|---------|
-| [ZygiskNext](https://github.com/Dr-TSNG/ZygiskNext) | Zygisk support for KernelSU |
-| [TrickyStore](https://github.com/5ec1cff/TrickyStore) | Keystore spoofing for Play Integrity |
-| Yurikey | Spoof `verifiedbootstate=green` |
