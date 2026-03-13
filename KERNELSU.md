@@ -13,9 +13,9 @@
 | Compatible Manager | KernelSU Next Manager **v3.1.0** |
 | Manager download | [KernelSU Next Releases](https://github.com/rifsxd/KernelSU-Next/releases) |
 
-> ⚠️ The Manager version **must match** the kernel KSU_VERSION.
-> Kernel reports `33024` → download Manager **v3.1.0 (33024)** specifically.
-> Using a mismatched version will show "abnormal" in the Manager app.
+> **Important:** The Manager version **must match** the kernel `KSU_VERSION`.
+> This kernel reports `33024`, so download Manager **v3.1.0 (33024)** specifically.
+> Using a mismatched version will show "KernelSU version abnormal" in the Manager app.
 
 ---
 
@@ -57,15 +57,11 @@ CONFIG_HAVE_KPROBES=y
 | `drivers/kernelsu/ksu.c` | `on_post_fs_data()`: ensure `/data/adb` directory exists before loading allow list |
 
 ### 4. RC injection fix
-Android 14 with non-GKI kernel may miss `post-fs-data` trigger. Added `late-init` as fallback in `KERNEL_SU_RC`:
-```c
-"on late-init\n"
-"    exec u:r:kernelsu:s0 root -- " KSUD_PATH " post-fs-data\n"
-```
+Android 14 with non-GKI kernel may miss the `post-fs-data` trigger. Added `late-init` as a fallback in `KERNEL_SU_RC`.
 
 ### 5. SELinux flex_array fix (root cause of bootloop)
 Linux 4.19 allocates `type_attr_map_array` as a fixed-size `flex_array` at policy load time.
-KernelSU trying to add new types (`su`, `ksu_file`) at runtime would exceed capacity → half-registered type → `strlen(NULL)` crash → kernel panic.
+KernelSU trying to add new types (`su`, `ksu_file`) at runtime exceeded capacity — resulting in a half-registered type — causing `strlen(NULL)` crash — kernel panic — bootloop.
 
 **Fix**: Pre-check capacity before inserting. If full, `apply_kernelsu_rules()` returns `false` and skips all dependent calls gracefully.
 
@@ -75,9 +71,9 @@ KernelSU trying to add new types (`su`, `ksu_file`) at runtime would exceed capa
 
 | Feature | Status |
 |---------|--------|
-| KernelSU Working | ✅ Built-in (GKI mode) |
+| KernelSU Working | Built-in (GKI mode) |
 | Hook mode | Kprobes |
-| Root access | ✅ uid=0 |
-| SELinux su domain | ✅ `u:r:su:s0` |
-| Zygisk (ZygiskNext) | ✅ Enabled |
+| Root access | uid=0 |
+| SELinux su domain | u:r:su:s0 |
+| Zygisk (ZygiskNext) | Supported |
 | Root detection | Hidden (no su binary in PATH) |
