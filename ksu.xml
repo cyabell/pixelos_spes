@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
   PixelOS 14 - Xiaomi Redmi Note 11 (spes) - KernelSU Manifest
-  Branch: fourteen-ksu
-  Kernel includes KernelSU Next integration for Linux 4.19.
+  Kernel: fourteen-ksu branch (KernelSU Next integrated for Linux 4.19)
 
   Usage:
     repo init -u https://github.com/cyabell/pixelos_spes -b fourteen -m ksu.xml
@@ -14,89 +13,85 @@
   <!-- Include upstream PixelOS manifest -->
   <include name="https://raw.githubusercontent.com/PixelOS-AOSP/manifest/fourteen/default.xml" />
 
-  <!-- ===== OUR PATCHED REPOS (cyabell forks, pinned to gold master SHA) ===== -->
-
   <remote name="cyabell" fetch="https://github.com/cyabell" />
 
-  <!-- hardware/google/pixel: removed duplicate kernel_headers/Android.bp -->
+  <!-- hardware/google/pixel -->
   <remove-project name="LineageOS/android_hardware_google_pixel" />
   <project name="android_hardware_google_pixel"
            path="hardware/google/pixel"
            remote="cyabell"
            revision="76bd59d545f4b57e2f9c839ef3d92d6d24ed8a53" />
 
-  <!-- hardware/lineage/compat: removed duplicate Android.bp -->
+  <!-- hardware/lineage/compat -->
   <remove-project name="LineageOS/android_hardware_lineage_compat" />
   <project name="android_hardware_lineage_compat"
            path="hardware/lineage/compat"
            remote="cyabell"
            revision="cf05870274d9939107c4495b26cecfd1e191bffc" />
 
-  <!-- packages/apps/BtHelper: fixed Android.bp deps + AndroidManifest theme -->
+  <!-- packages/apps/BtHelper -->
   <remove-project name="TheParasiteProject/packages_apps_BtHelper" />
   <project name="packages_apps_BtHelper"
            path="packages/apps/BtHelper"
            remote="cyabell"
            revision="ac9409be6e4e7a71a712232baabfa5b4d2431f46" />
 
-  <!-- packages/apps/FMRadio: fixed jni/fmr/Android.bp soong_namespace -->
+  <!-- packages/apps/FMRadio -->
   <remove-project name="LineageOS/android_packages_apps_FMRadio" />
   <project name="android_packages_apps_FMRadio"
            path="packages/apps/FMRadio"
            remote="cyabell"
            revision="c2f8f78248a72939703a24507ca153d4cb7274ef" />
 
-  <!-- packages/modules/IntentResolver: fixed resolveActivityAsUser() API -->
+  <!-- packages/modules/IntentResolver -->
   <remove-project name="LineageOS/android_packages_modules_IntentResolver" />
   <project name="android_packages_modules_IntentResolver"
            path="packages/modules/IntentResolver"
            remote="cyabell"
            revision="5dfe8bca11c95c8af2ca2ac89178ce3a74570208" />
 
-  <!-- packages/services/Telephony: fixed TelephonyPermissions.isShell() -->
+  <!-- packages/services/Telephony -->
   <remove-project name="LineageOS/android_packages_services_Telephony" />
   <project name="android_packages_services_Telephony"
            path="packages/services/Telephony"
            remote="cyabell"
            revision="439ffe7f37abec5ba3487aec4ebdf15e53c8aa46" />
 
-  <!-- vendor/aosp: removed duplicate qti_kernel_headers, fixed common.mk -->
+  <!-- vendor/aosp -->
   <remove-project name="PixelOS/vendor_aosp" />
   <project name="vendor_aosp"
            path="vendor/aosp"
            remote="cyabell"
            revision="3c620d9b6aecd2e032d34c7a8cc5996815bcad4d" />
 
-  <!-- vendor/qcom/opensource/libfmjni: removed broken Android.bp -->
+  <!-- vendor/qcom/opensource/libfmjni -->
   <remove-project name="LineageOS/android_vendor_qcom_opensource_libfmjni" />
   <project name="android_vendor_qcom_opensource_libfmjni"
            path="vendor/qcom/opensource/libfmjni"
            remote="cyabell"
            revision="ad6a812a286a60a633909bf2ce35908f5d60013b" />
 
-  <!-- ===== DEVICE-SPECIFIC EXTERNAL REPOS (not modified, pointed to source) ===== -->
-
   <remote name="gh" fetch="https://github.com" />
 
-  <!-- device tree (patched AndroidProducts.mk) -->
+  <!-- device tree -->
   <project name="cyabell/android_device_xiaomi_spes"
            path="device/xiaomi/spes"
            remote="gh"
            revision="ac7f6e6f08d43373d9b1db2c9b5611e0b91f1c87" />
 
-  <!-- sm6225 common device tree (unmodified, original source) -->
+  <!-- sm6225 common device tree -->
   <project name="sapphire-sm6225-AD/android_device_xiaomi_sm6225-common"
            path="device/xiaomi/sm6225-common"
            remote="gh"
            revision="14.0" />
 
-  <!-- vendor/xiaomi/spes (unmodified, external source) -->
+  <!-- vendor/xiaomi/spes -->
   <project name="Jabiyeff/android_vendor_xiaomi_spes"
            path="vendor/xiaomi/spes"
            remote="gh"
            revision="14.0" />
 
-  <!-- hardware/xiaomi: fixed megvii/Android.bp libmegface duplicate -->
+  <!-- hardware/xiaomi -->
   <remove-project name="LineageOS/android_hardware_xiaomi" />
   <project name="android_hardware_xiaomi"
            path="hardware/xiaomi"
