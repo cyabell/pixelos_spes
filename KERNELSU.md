@@ -1,4 +1,4 @@
-# KernelSU Next Integration — PixelOS 14 / spes (sm6225)
+# KernelSU Next Integration - PixelOS 14 / spes (sm6225)
 
 > Kernel branch: `fourteen-ksu` in [kernel_xiaomi_sm6225](https://github.com/cyabell/kernel_xiaomi_sm6225)
 
@@ -12,10 +12,6 @@
 | KSU_VERSION (kernel) | **33024** |
 | Compatible Manager | KernelSU Next Manager **v3.1.0** |
 | Manager download | [KernelSU Next Releases](https://github.com/rifsxd/KernelSU-Next/releases) |
-
-> **Important:** The Manager version **must match** the kernel `KSU_VERSION`.
-> This kernel reports `33024`, so download Manager **v3.1.0 (33024)** specifically.
-> Using a mismatched version will show "KernelSU version abnormal" in the Manager app.
 
 ---
 
