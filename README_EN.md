@@ -10,7 +10,17 @@
 | ROM | PixelOS (AOSP 14) |
 | Device | Xiaomi Redmi Note 11 (spes) |
 | Android | 14 (AP2A) |
+| Kernel | Linux 4.19 (sm6225) |
 | Branch | `fourteen` |
+
+---
+
+## Available Manifests
+
+| Manifest | Description |
+|----------|-------------|
+| `default.xml` | Stock ROM, no root |
+| `ksu.xml` | ROM + KernelSU Next (root ready) |
 
 ---
 
@@ -27,8 +37,15 @@ mkdir -p ~/bin && curl https://storage.googleapis.com/git-repo-downloads/repo > 
 ```
 
 ### 3. Repo Init
+
+**Stock ROM (no root):**
 ```bash
-repo init -u https://github.com/cyabell/pixelos_spes -b fourteen --git-lfs
+repo init -u https://github.com/cyabell/pixelos_spes -b fourteen -m default.xml --git-lfs
+```
+
+**ROM + KernelSU Next:**
+```bash
+repo init -u https://github.com/cyabell/pixelos_spes -b fourteen -m ksu.xml --git-lfs
 ```
 > ⚠️ `--git-lfs` is required — GMS APKs are stored in Git LFS. Without it you will get corrupt APK errors during build.
 
@@ -61,4 +78,5 @@ out/target/product/spes/PixelOS-*.zip
 
 ## Notes
 - For the full list of bugs fixed, see [BUGS_FIXED.md](BUGS_FIXED.md)
+- For KernelSU integration details, see [KERNELSU.md](KERNELSU.md)
 - Thai language guide: [README.md](README.md)
